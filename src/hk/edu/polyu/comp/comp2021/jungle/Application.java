@@ -34,6 +34,7 @@ public class Application {
                     System.out.println("OPEN GAME.");
                     break;
                 case "save":
+                    System.out.println("SAVE GAME.");
                     break;
                 default:
                     break;
