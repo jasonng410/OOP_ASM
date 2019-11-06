@@ -30,6 +30,11 @@ public class Application {
                     }
                     site=(site=="x")? "y":"x";
                     break;
+                case "open":
+                    System.out.println("OPEN GAME.");
+                    break;
+                case "save":
+                    break;
                 default:
                     break;
             }
