@@ -52,10 +52,23 @@ public class MoveCommand extends Command {
     }
 
     public boolean isVaild() throws InputException, siteException {
-        if(s1x>8||s1x<0||s1y<0||s1y>7||s2x>8||s2x<0||s2y<0||s2y>7){
+        int move1,move2;
+        move1=s1x+s1y;
+        move2=s2x+s2y;
+        int position;
+        Enviroment a=board[s1x][s1y];
+        Enviroment b=board[s2x][s2y];
+        position=(Math.max(move1,move2)==move1)?move1-move2:move2-move1;
+        if(position>1){
+            throw new InputException("Position Error.");
+        }else if(s1x>8||s1x<0||s1y<0||s1y>7||s2x>8||s2x<0||s2y<0||s2y>7){
             throw new InputException();
         }else if(!this.site.equals(board[s1x][s1y].getSite())){
             throw new siteException();
+        }else if(board[s1x][s1y]==null){
+            throw new InputException("Please select a chess.");
+        }else if(a.getSite().equals(b.getSite())){
+            throw new InputException("Already have chess.");
         }
         return true;
     }

@@ -78,7 +78,7 @@ public class JungleGame {
     }
 
     public boolean  gameEnd(){
-        int count=0;
+       /* int count=0;
         for(Enviroment[] q:board){
             for(Enviroment w:q){
                 if(w!=null){
@@ -89,6 +89,9 @@ public class JungleGame {
             }
         }
         return count>0? false:true;
+
+        */
+       return false;
     }
 }
 

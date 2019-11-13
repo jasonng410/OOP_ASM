@@ -1,7 +1,10 @@
 package hk.edu.polyu.comp.comp2021.jungle.Expection;
 
 public class InputException extends Exception {
+    String msg;
+    public  InputException(String msg){this.msg=msg;}
+    public  InputException(){}
     public String toString(){
-        return "Invalid Input. Please try again.";
+        return msg+" Invalid Input. Please try again.";
     }
 }
