@@ -48,7 +48,7 @@ public class MoveCommand extends Command {
         }else if(a.getRank()>=b.getRank()){
             board[s2x][s2y]=a;
             board[s1x][s1y]=null;
-        }else{}
+        }
     }
 
     public boolean isVaild() throws InputException, siteException {
@@ -67,8 +67,12 @@ public class MoveCommand extends Command {
             throw new siteException();
         }else if(board[s1x][s1y]==null){
             throw new InputException("Please select a chess.");
-        }else if(a.getSite().equals(b.getSite())){
-            throw new InputException("Already have chess.");
+        }else if(b!=null){
+            if((a.getSite().equals(b.getSite()))){
+                throw new InputException("Already have chess.");
+            }else if(a.getRank()<b.getRank()){
+                throw new InputException("low rank.");
+            }
         }
         return true;
     }

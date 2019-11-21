@@ -16,6 +16,7 @@ public class Application {
         String site="x";
         body:while (!game.gameEnd()){
             try{
+            game.printBoard();
             System.out.println("Player "+site+": Please input command.");
             String comman=in.nextLine();
             String[] com=comman.split(" ");
