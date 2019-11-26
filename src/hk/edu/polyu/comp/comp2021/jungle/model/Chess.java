@@ -42,4 +42,28 @@ public class Chess extends Enviroment {
     }
     public String getSite(){return this.site;}
     public int getRank(){return this.rank.getRank();}
+    public String getType(){return "chess";}
+
+
+    public void setChess(Chess a) { }
+
+    public void removeChess() { }
+
+    public boolean checkRank(Chess other){
+        if(this.getRank()==1&&other.getRank()==8){
+            return true;
+        }
+        if(this.getRank()>=other.getRank()){
+            return true;
+        }else return false;
+    }
+
+    @Override
+    public Chess getChess() {
+        return null;
+    }
+
+    public boolean haveChess() {
+        return true;
+    }
 }

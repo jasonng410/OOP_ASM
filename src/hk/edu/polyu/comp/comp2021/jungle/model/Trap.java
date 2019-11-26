@@ -15,4 +15,26 @@ public class Trap extends Enviroment {
     public String getSite() {
         return this.site;
     }
+
+    public String getType(){
+        return "trap";
+    }
+
+    @Override
+    public void setChess(Chess a) {
+
+    }
+
+    public void removeChess() {
+    }
+
+    @Override
+    public Chess getChess() {
+        return null;
+    }
+
+    @Override
+    public boolean haveChess() {
+        return false;
+    }
 }

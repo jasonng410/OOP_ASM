@@ -3,6 +3,8 @@ package hk.edu.polyu.comp.comp2021.jungle.Command;
 import hk.edu.polyu.comp.comp2021.jungle.Expection.*;
 import hk.edu.polyu.comp.comp2021.jungle.model.Chess;
 import hk.edu.polyu.comp.comp2021.jungle.model.Enviroment;
+import hk.edu.polyu.comp.comp2021.jungle.model.River;
+import hk.edu.polyu.comp.comp2021.jungle.model.Trap;
 
 public class MoveCommand extends Command {
 
@@ -37,17 +39,47 @@ public class MoveCommand extends Command {
         }
         s1x=9-s1x;
         s2x=9-s2x;
-        System.out.println(board[s1x][s1y].toString());
+//        System.out.println(board[s1x][s1y].toString());
     }
     public void execute(){
-        Chess a= (Chess)board[s1x][s1y];
+        Chess a;
+        if(!board[s1x][s1y].getType().equals("chess")){
+           a= board[s1x][s1y].getChess();
+        }else{
+           a= (Chess)board[s1x][s1y];
+        }
         Enviroment b= board[s2x][s2y];
         if(b==null){
-            board[s2x][s2y]=a;
-            board[s1x][s1y]=null;
-        }else if(a.getRank()>=b.getRank()){
-            board[s2x][s2y]=a;
-            board[s1x][s1y]=null;
+            String cas=board[s1x][s1y].getType();
+            switch (cas){
+               case "chess":
+                   board[s2x][s2y]=board[s1x][s1y];
+                   board[s1x][s1y]=null;
+                break;
+
+                case "river":
+                    board[s2x][s2y]=board[s1x][s1y].getChess();
+                    board[s1x][s1y].removeChess();
+                    break;
+            }
+        }else {
+            if (board[s1x][s1y].getType().equals("chess") && b.getType().equals("chess")) {
+                if (a.checkRank((Chess)b)) {
+                    board[s2x][s2y] = a;
+                    board[s1x][s1y] = null;
+                }
+            } else if (board[s1x][s1y].getType().equals("chess") && b.getType().equals("river")) {
+                b.setChess(a);
+                board[s1x][s1y] = null;
+            } else if (board[s1x][s1y].getType().equals("river") && b.getType().equals("river")) {
+                b.setChess(a);
+                board[s1x][s1y].removeChess();
+            } else if (board[s1x][s1y].getType().equals("river") && b.getType().equals("chess")) {
+                if(a.checkRank((Chess)b)){
+                board[s2x][s2y] = a;
+                board[s1x][s1y].removeChess();
+                }
+            }
         }
     }
 
@@ -58,22 +90,66 @@ public class MoveCommand extends Command {
         int position;
         Enviroment a=board[s1x][s1y];
         Enviroment b=board[s2x][s2y];
+        Chess a1,a2;
         position=(Math.max(move1,move2)==move1)?move1-move2:move2-move1;
         if(position>1){
             throw new InputException("Position Error.");
         }else if(s1x>8||s1x<0||s1y<0||s1y>7||s2x>8||s2x<0||s2y<0||s2y>7){
             throw new InputException();
-        }else if(!this.site.equals(board[s1x][s1y].getSite())){
-            throw new siteException();
+        }else if(a!=null){
+            if(!a.getType().equals("chess")){
+                if(!a.haveChess()){
+                    throw new InputException("Please select a chess.");
+                }else{
+                    a1=a.getChess();
+                }
+            }else{
+                a1=(Chess)a;
+            }
+            if(!a1.site.equals(this.site)){
+                throw new siteException();
+            }
+        }else{
+            throw new InputException("Please select a chess.");
+        }
+        Chess b1=null;
+        if(b!=null){
+            if(b.getType().equals("chess")){
+                b1=(Chess)b;
+            }else{
+                if(b.haveChess()){
+                    b1=b.getChess();
+                }
+            }
+            if(b1!=null){
+                if(b1.getSite().equals(a1.getSite())){
+                    throw new InputException("Already have chess.");
+                }
+                if(!a1.checkRank(b1)){
+                    throw new InputException("low rank.");
+                }
+
+            }
+        }
+
+            /*
+            if(a.getType().equals("chess")){
+            if(!this.site.equals(board[s1x][s1y].getSite())){
+                throw new siteException();
+            }
         }else if(board[s1x][s1y]==null){
             throw new InputException("Please select a chess.");
-        }else if(b!=null){
+        }else if(!a.getType().equals("chess")&&a.haveChess()==false){
+            throw new InputException("Please select a correct chess.");
+        }else if(b!=null&&(a.getType().equals("chess")&&b.getType().equals("chess"))){
             if((a.getSite().equals(b.getSite()))){
                 throw new InputException("Already have chess.");
             }else if(a.getRank()<b.getRank()){
                 throw new InputException("low rank.");
             }
         }
+             */
+
         return true;
     }
 
