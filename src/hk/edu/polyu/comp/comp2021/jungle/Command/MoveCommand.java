@@ -117,6 +117,10 @@ public class MoveCommand extends Command {
             if(b.getType().equals("chess")){
                 b1=(Chess)b;
             }else{
+                if(b.getType().equals("river")&&a1.getRank()!=1){
+                    throw new InputException("Only rat get into river.");
+
+                }
                 if(b.haveChess()){
                     b1=b.getChess();
                 }

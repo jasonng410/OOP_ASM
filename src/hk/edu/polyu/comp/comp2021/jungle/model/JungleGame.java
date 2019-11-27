@@ -4,6 +4,9 @@ public class JungleGame {
 
     public Enviroment[][] board;
     public String[] nameList = {"Lion", "Tiger", "Dog", "Cat", "Rat", "Leopard", "Wolf", "Elephant"};
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = "\u001B[34m";
 
     public JungleGame() {
         int w = 0;
@@ -65,7 +68,18 @@ public class JungleGame {
                 if (x == null) {
                     System.out.print("   ");
                 } else {
+                    if(x.getType().equals("chess")&& x.getSite().equals("x")){
 
+                        System.out.print(ANSI_RED+x.toString()+"  "+ANSI_RESET);
+                    }else if(x.getType().equals("chess")&&x.getSite().equals("y")){
+                        System.out.print(ANSI_BLUE+x.toString()+"  "+ANSI_RESET);
+                    }else if(x.getType().equals("river")&&x.haveChess()){
+                        if(x.getSite().equals("x")){
+                            System.out.print(ANSI_RED+x.toString()+"  "+ANSI_RESET);
+                        }else{
+                            System.out.print(ANSI_BLUE+x.toString()+"  "+ANSI_RESET);
+                        }
+                    }else
                     System.out.print(x.toString()+"  ");
                 }
             }
