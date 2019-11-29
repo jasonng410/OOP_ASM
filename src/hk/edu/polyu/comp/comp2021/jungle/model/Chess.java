@@ -50,6 +50,9 @@ public class Chess extends Enviroment {
     public void removeChess() { }
 
     public boolean checkRank(Chess other){
+        if(this.getRank()==8&&other.getRank()==1){
+            return false;
+        }
         if(this.getRank()==1&&other.getRank()==8){
             return true;
         }

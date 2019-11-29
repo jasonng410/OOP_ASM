@@ -12,11 +12,11 @@ public class Application {
     public static void main(String[] args){
 
         JungleGame game = new JungleGame();
+        game.printBoard();
         Scanner in =new Scanner(System.in);
         String site="x";
         body:while (!game.gameEnd()){
             try{
-            game.printBoard();
             System.out.println("Player "+site+": Please input command.");
             String comman=in.nextLine();
             String[] com=comman.split(" ");
