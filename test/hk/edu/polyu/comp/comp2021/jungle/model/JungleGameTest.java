@@ -59,35 +59,107 @@ public class JungleGameTest {
             commandlist[8] = new MoveCommand("g3","f3","x",game.board);
             commandlist[9] = new MoveCommand("f3","f4","x",game.board);
         */
+        /*
         commandlist[0] = new MoveCommand("G3", "G4", "x", game.board);
         commandlist[1] = new MoveCommand("G4", "F4", "x", game.board);
         commandlist[2] = new MoveCommand("f4", "e4", "x", game.board);
-        commandlist[3] = new MoveCommand("e3", "e2", "x", game.board);
-        commandlist[4] = new MoveCommand("g1", "g2", "x", game.board);
-        commandlist[5] = new MoveCommand("g2", "g3", "x", game.board);
-        commandlist[6] = new MoveCommand("g3", "f3", "x", game.board);
+        commandlist[3] = new MoveCommand("e4", "d4", "x", game.board);
+        commandlist[4] = new MoveCommand("d4", "c4", "x", game.board);
+        commandlist[5] = new MoveCommand("c4", "b4", "x", game.board);
+        commandlist[6] = new MoveCommand("b4", "b5", "x", game.board);
+        commandlist[7] = new MoveCommand("b5", "b6", "x", game.board);
+        commandlist[8] = new MoveCommand("a7", "b7", "y", game.board);
+        commandlist[9] = new MoveCommand("b6", "a6", "x", game.board);
+        commandlist[10] = new MoveCommand("a6", "a7", "x", game.board);
+        commandlist[11] = new MoveCommand("a7", "b7", "x", game.board);
         //commandlist[7] = new MoveCommand("g7", "f7", "y", game.board);
-        commandlist[7] = new MoveCommand("f3", "f4", "x", game.board);
 
        // commandlist[7] = new MoveCommand("f3", "e3", "x", game.board);
         //commandlist[8] = new MoveCommand("e3", "d3", "x", game.board);
         //commandlist[9] = new MoveCommand("d3", "d4", "x", game.board);
         //commandlist[10] = new MoveCommand("d4", "e4", "x", game.board);
        // commandlist[7] = new MoveCommand("f3", "f4", "x", game.board);
-
-try {
-    for (int a = 0; a <=7; a++) {
-        Command c = commandlist[a];
-        game.printBoard();
-        if (c.isVaild()) {
-            c.execute();
+         */
+        /*
+        String[] steps = {"g3","g4","f4","e4","d4","c4","b4","b5","b6","b7","a7","b7","b6"};
+        String[] steps2= {"a3", "a4", "a5", "a6", "a7", "a8", "a9", "b9", "b8", "b7", "c7", "d7", "e7", "f7", "f8", "f9", "g9","g8","g7"};
+        for (int a = 0; a < steps.length - 1; a++) {
+            System.out.println(steps[a] + "--" + steps[a + 1]);
+            commandlist[a] = new MoveCommand(steps[a], steps[a + 1], "x", game.board);
         }
 
 
-    }
-    game.printBoard();
-}catch (InputException e){
-    System.out.println(e.toString());
-}
+        try {
+            for (int a = 0; a < steps.length - 1; a++) {
+                Command c = commandlist[a];
+                game.printBoard();
+                if (c.isVaild()) {
+                    c.execute();
+                }
+
+
+            }
+
+            game.printBoard();
+            for (int a = 0; a < steps2.length - 1; a++) {
+                System.out.println(steps2[a] + "--" + steps2[a + 1]);
+                commandlist[a] = new MoveCommand(steps2[a], steps2[a + 1], "x", game.board);
+            }
+
+
+            try {
+                for (int a = 0; a < steps2.length - 1; a++) {
+                    Command c = commandlist[a];
+                    game.printBoard();
+                    if (c.isVaild()) {
+                        c.execute();
+                    }
+
+
+                }
+
+                game.printBoard();
+            System.out.println(game.gameEnd());
+
+
+        } catch (InputException e) {
+            e.printStackTrace();
+        }
+    } catch (InputException e) {
+            e.printStackTrace();
+        } catch (siteException e) {
+            e.printStackTrace();
+        }
+        */
+        commandlist[0] = new MoveCommand("e3", "d3", "x", game.board);
+        commandlist[1] = new MoveCommand("d3", "d4", "x", game.board);
+        commandlist[2] = new MoveCommand("d4", "d5", "x", game.board);
+        commandlist[3] = new MoveCommand("d5", "d6", "x", game.board);
+        commandlist[4] = new MoveCommand("d6", "d7", "x", game.board);
+        commandlist[5] = new MoveCommand("d7", "d8", "x", game.board);
+        commandlist[6] = new MoveCommand("d8", "d9", "x", game.board);
+       // commandlist[6] = new MoveCommand("e7", "e8", "y", game.board);
+        //commandlist[7] = new MoveCommand("e8", "d8", "y", game.board);
+        //commandlist[8] = new MoveCommand("d8", "e8", "y", game.board);
+        //commandlist[9] = new MoveCommand("e8", "d8", "y", game.board);
+
+        try {
+            for (int a = 0; a < 7; a++) {
+                Command c = commandlist[a];
+                game.printBoard();
+                if (c.isVaild()) {
+                    c.execute();
+                }
+
+
+            }
+
+            game.printBoard();
+            System.out.println(game.gameEnd());
+        } catch (InputException e) {
+            e.printStackTrace();
+        } catch (siteException e) {
+            e.printStackTrace();
+        }
     }
 }

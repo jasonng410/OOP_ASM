@@ -12,6 +12,8 @@ public class JungleGame {
         int w = 0;
         int pos = 0;
         board = new Enviroment[9][7];
+        board[0][3]=new Den("y");
+        board[8][3]=new Den("x");
         for(int t =3;t<6;t++){
             for(int r=0;r<7;r++){
                 if(r==0||r==3||r==6){
@@ -73,8 +75,8 @@ public class JungleGame {
                         System.out.print(ANSI_RED+x.toString()+"  "+ANSI_RESET);
                     }else if(x.getType().equals("chess")&&x.getSite().equals("y")){
                         System.out.print(ANSI_BLUE+x.toString()+"  "+ANSI_RESET);
-                    }else if(x.getType().equals("river")&&x.haveChess()){
-                        if(x.getSite().equals("x")){
+                    }else if((x.getType().equals("river")||x.getType().equals("trap"))&&x.haveChess()){
+                        if(x.getChess().getSite().equals("x")){
                             System.out.print(ANSI_RED+x.toString()+"  "+ANSI_RESET);
                         }else{
                             System.out.print(ANSI_BLUE+x.toString()+"  "+ANSI_RESET);
@@ -92,19 +94,34 @@ public class JungleGame {
     }
 
     public boolean  gameEnd(){
-       /* int count=0;
-        for(Enviroment[] q:board){
-            for(Enviroment w:q){
-                if(w!=null){
-                if ((w.getSite().equals("x"))){
-                    count+=1;
-                }
-                }
-            }
-        }
-        return count>0? false:true;
-
-        */
+       int x=0;
+       int y=0;
+       for(Enviroment[] b1 : board){
+           for(Enviroment e : b1){
+               if(e!=null){
+                   if(e.getType().equals("chess")){
+                       if (e.getSite() == "x") {
+                           x++;
+                       } else {
+                           y++;
+                       }
+                   }else if(e.getType().equals("river")){
+                       if(e.haveChess()){
+                           if(e.getChess().getSite()=="x"){
+                               x++;
+                           }else{
+                               y++;
+                           }
+                       }
+                   }
+               }
+           }
+       }
+        System.out.println("x: "+x+" y: "+y);
+       if(this.board[0][3].haveChess()||this.board[8][3].haveChess()){return true;}
+       if(x==0||y==0){
+           return true;
+       }
        return false;
     }
 }

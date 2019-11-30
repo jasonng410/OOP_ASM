@@ -1,17 +1,16 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public class Trap extends Enviroment {
-
+public class Den extends Enviroment {
     public String site;
     public Chess c;
-    public Trap(String site){
-       this.site=site;
+    public Den(String site){
+        this.site=site;
     }
 
     @Override
     public String toString() {
         if(c==null){
-            return "^";
+            return "#";
         }else{
             return c.toString();
         }
@@ -23,7 +22,7 @@ public class Trap extends Enviroment {
     }
 
     public String getType(){
-        return "trap";
+        return "den";
     }
 
     @Override

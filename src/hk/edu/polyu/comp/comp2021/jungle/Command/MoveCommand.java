@@ -41,6 +41,8 @@ public class MoveCommand extends Command {
         s2x=9-s2x;
 //        System.out.println(board[s1x][s1y].toString());
     }
+
+
     public void execute() throws InputException {
         Chess a;
         if(!board[s1x][s1y].getType().equals("chess")){
@@ -62,9 +64,20 @@ public class MoveCommand extends Command {
                     board[s2x][s2y]=board[s1x][s1y].getChess();
                     board[s1x][s1y].removeChess();
                     break;
+
+                case "trap":
+                    board[s2x][s2y]=board[s1x][s1y].getChess();
+                    board[s1x][s1y].removeChess();
+                    break;
             }
         }else {
-            if (board[s1x][s1y].getType().equals("chess") && b.getType().equals("chess")) {
+            if(b.getType().equals("den")){
+                b.setChess((Chess)board[s1x][s1y].getChess());
+                board[s1x][s1y].removeChess();
+            }else if(b.getType().equals("trap")){
+                b.setChess((Chess)board[s1x][s1y]);
+                board[s1x][s1y] = null;
+            }else if (board[s1x][s1y].getType().equals("chess") && b.getType().equals("chess")) {
                 if (a.checkRank((Chess)b)) {
                     board[s2x][s2y] = a;
                     board[s1x][s1y] = null;
@@ -154,6 +167,8 @@ public class MoveCommand extends Command {
         } else {
             throw new InputException("Please select a chess.");
         }
+
+
         Chess b1 = null;
         if (b != null) {
             if (b.getType().equals("chess")) {
@@ -214,6 +229,10 @@ public class MoveCommand extends Command {
                         }
                     }
                     else throw new InputException("Only rat get into river.");
+                }else if(b.getType().equals("trap")){
+                    if(a1.getSite().equals(b.getSite())&&b.haveChess()==false){
+                        throw new InputException("Cannot go into your own trap.");
+                    }
                 }
             if (b.haveChess()) {
                 b1 = b.getChess();
@@ -223,9 +242,12 @@ public class MoveCommand extends Command {
             if (b1.getSite().equals(a1.getSite())) {
                 throw new InputException("Already have chess.");
             }
+            if(b.getType().equals("trap")){
+
+            }else{
             if (!a1.checkRank(b1)) {
                 throw new InputException("low rank.");
-            }
+            }}
 
         }
     }
