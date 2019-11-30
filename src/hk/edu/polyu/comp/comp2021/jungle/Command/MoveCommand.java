@@ -72,8 +72,9 @@ public class MoveCommand extends Command {
             }
         }else {
             if(b.getType().equals("den")){
+                if(!board[s1x][s1y].getChess().getSite().equals(b.getSite())){
                 b.setChess((Chess)board[s1x][s1y].getChess());
-                board[s1x][s1y].removeChess();
+                board[s1x][s1y].removeChess();}else{throw new InputException("Cannot go into your own den.");}
             }else if(b.getType().equals("trap")){
                 b.setChess((Chess)board[s1x][s1y]);
                 board[s1x][s1y] = null;

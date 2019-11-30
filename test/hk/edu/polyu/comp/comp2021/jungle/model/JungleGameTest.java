@@ -137,14 +137,15 @@ public class JungleGameTest {
         commandlist[3] = new MoveCommand("d5", "d6", "x", game.board);
         commandlist[4] = new MoveCommand("d6", "d7", "x", game.board);
         commandlist[5] = new MoveCommand("d7", "d8", "x", game.board);
-        commandlist[6] = new MoveCommand("d8", "d9", "x", game.board);
-       // commandlist[6] = new MoveCommand("e7", "e8", "y", game.board);
-        //commandlist[7] = new MoveCommand("e8", "d8", "y", game.board);
+        //commandlist[6] = new MoveCommand("d8", "d9", "x", game.board);
+        commandlist[6] = new MoveCommand("e7", "e8", "y", game.board);
+        commandlist[7] = new MoveCommand("e8", "d8", "y", game.board);
+        commandlist[8] = new MoveCommand("d8", "d9", "y", game.board);
         //commandlist[8] = new MoveCommand("d8", "e8", "y", game.board);
         //commandlist[9] = new MoveCommand("e8", "d8", "y", game.board);
 
         try {
-            for (int a = 0; a < 7; a++) {
+            for (int a = 0; a < 9; a++) {
                 Command c = commandlist[a];
                 game.printBoard();
                 if (c.isVaild()) {
