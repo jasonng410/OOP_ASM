@@ -1,6 +1,8 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public class Chess extends Enviroment {
+import java.io.Serializable;
+
+public class Chess extends Enviroment implements Serializable {
     public rank rank;
     public String name;
     public String site;

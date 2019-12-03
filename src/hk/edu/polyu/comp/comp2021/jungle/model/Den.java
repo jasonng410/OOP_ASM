@@ -1,6 +1,8 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public class Den extends Enviroment {
+import java.io.Serializable;
+
+public class Den extends Enviroment implements Serializable {
     public String site;
     public Chess c;
     public Den(String site){

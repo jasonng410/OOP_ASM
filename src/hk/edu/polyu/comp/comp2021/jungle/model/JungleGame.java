@@ -1,13 +1,15 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public class JungleGame {
+import java.io.Serializable;
+
+public class JungleGame implements Serializable {
 
     public Enviroment[][] board;
-    public String[] nameList = {"Lion", "Tiger", "Dog", "Cat", "Rat", "Leopard", "Wolf", "Elephant"};
+    public String[] nameList = {"Lion", "Tiger", "Dog", "Cat", "Rat", "leopard", "Wolf", "Elephant"};
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public String playerX,playerY,winner;
+    public String playerX,playerY;
 
     public JungleGame() {
         int w = 0;
@@ -109,14 +111,14 @@ public class JungleGame {
            for(Enviroment e : b1){
                if(e!=null){
                    if(e.getType().equals("chess")){
-                       if (e.getSite() == "x") {
+                       if (e.getSite().equals("x")) {
                            x++;
                        } else {
                            y++;
                        }
                    }else if(e.getType().equals("river")){
                        if(e.haveChess()){
-                           if(e.getChess().getSite()=="x"){
+                           if(e.getChess().getSite().equals("x")){
                                x++;
                            }else{
                                y++;
@@ -126,16 +128,20 @@ public class JungleGame {
                }
            }
        }
-        System.out.println("x: "+x+" y: "+y);
+        //System.out.println("x: "+x+" y: "+y);
        if(this.board[0][3].haveChess()||this.board[8][3].haveChess()){
-           if(this.board[0][3].haveChess()){this.winner=playerX;}else if(this.board[8][3].haveChess()){this.winner=playerY;}
+           if(this.board[0][3].haveChess()){
+               System.out.println("Winner is "+playerX+"!!" );
+           }else if(this.board[8][3].haveChess()){
+               System.out.println("Winner is "+playerY+"!!" );
+           }
            return true;
        }
        if(x==0||y==0){
            if(x==0){
-               winner=playerY;
+               System.out.println("Winner is "+playerY+"!!" );
            }else if(y==0){
-               winner=playerX;
+               System.out.println("Winner is "+playerX+"!!" );
            }
            return true;
        }

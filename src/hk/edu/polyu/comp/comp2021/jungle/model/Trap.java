@@ -1,6 +1,8 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public class Trap extends Enviroment {
+import java.io.Serializable;
+
+public class Trap extends Enviroment implements Serializable {
 
     public String site;
     public Chess c;

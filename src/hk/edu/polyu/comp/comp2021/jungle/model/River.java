@@ -1,6 +1,8 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public class River extends Enviroment {
+import java.io.Serializable;
+
+public class River extends Enviroment implements Serializable {
     public Chess c;
 
     @Override

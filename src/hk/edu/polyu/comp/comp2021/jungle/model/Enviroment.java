@@ -1,6 +1,8 @@
 package hk.edu.polyu.comp.comp2021.jungle.model;
 
-public abstract class Enviroment {
+import java.io.Serializable;
+
+public abstract class Enviroment implements Serializable {
      public abstract String toString();
      public abstract String getSite();
      public int getRank(){return 0;}
