@@ -7,6 +7,7 @@ public class JungleGame {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
+    public String playerX,playerY,winner;
 
     public JungleGame() {
         int w = 0;
@@ -58,6 +59,14 @@ public class JungleGame {
             }
         }
 
+    }
+
+    public void setX(String nm){
+        this.playerX=nm;
+    }
+
+    public void setY(String nm){
+        this.playerY=nm;
     }
 
     public void printBoard() {
@@ -118,8 +127,16 @@ public class JungleGame {
            }
        }
         System.out.println("x: "+x+" y: "+y);
-       if(this.board[0][3].haveChess()||this.board[8][3].haveChess()){return true;}
+       if(this.board[0][3].haveChess()||this.board[8][3].haveChess()){
+           if(this.board[0][3].haveChess()){this.winner=playerX;}else if(this.board[8][3].haveChess()){this.winner=playerY;}
+           return true;
+       }
        if(x==0||y==0){
+           if(x==0){
+               winner=playerY;
+           }else if(y==0){
+               winner=playerX;
+           }
            return true;
        }
        return false;

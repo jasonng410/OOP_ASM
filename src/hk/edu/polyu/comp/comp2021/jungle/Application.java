@@ -12,9 +12,13 @@ public class Application {
     public static void main(String[] args){
 
         JungleGame game = new JungleGame();
-        game.printBoard();
         Scanner in =new Scanner(System.in);
         String site="x";
+        System.out.println("Player X please input your name.");
+        game.setX(in.nextLine());
+        System.out.println("Player Y please input your name.");
+        game.setY(in.nextLine());
+        game.printBoard();
         body:while (!game.gameEnd()){
             try{
             System.out.println("Player "+site+": Please input command.");
@@ -50,5 +54,6 @@ public class Application {
                 continue body;
             }
         }
+        System.out.println("Winner is "+game.winner);
     }
 }

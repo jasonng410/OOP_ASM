@@ -17,6 +17,7 @@ public class JungleGameTest {
     @Test
     public void testJungleGameConstructor() throws InputException, siteException {
         JungleGame game = new JungleGame();
+        boolean success=true;
         assert true;
         Command[] commandlist = new Command[100];
         game.printBoard();
@@ -158,9 +159,13 @@ public class JungleGameTest {
             game.printBoard();
             System.out.println(game.gameEnd());
         } catch (InputException e) {
+            success=false;
             e.printStackTrace();
+
         } catch (siteException e) {
             e.printStackTrace();
+        }finally {
+            assert success;
         }
     }
 }
