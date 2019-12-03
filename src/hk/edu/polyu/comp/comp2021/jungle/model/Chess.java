@@ -40,7 +40,11 @@ public class Chess extends Enviroment implements Serializable {
 
         }
     public String toString(){
+        if(this.name.equals("Leopard")){
+            return "l";
+        }else{
         return name.charAt(0)+"";
+        }
     }
     public String getSite(){return this.site;}
     public int getRank(){return this.rank.getRank();}

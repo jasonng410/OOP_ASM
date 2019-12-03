@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class JungleGame implements Serializable {
 
     public Enviroment[][] board;
-    public String[] nameList = {"Lion", "Tiger", "Dog", "Cat", "Rat", "leopard", "Wolf", "Elephant"};
+    public String[] nameList = {"Lion", "Tiger", "Dog", "Cat", "Rat", "Leopard", "Wolf", "Elephant"};
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
